@@ -123,8 +123,11 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2545" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.4" />
+    <PackageReference Include="Xamarin.Forms.PancakeView">
+      <Version>2.3.0.759</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -132,5 +135,23 @@
       <Project>{EE880A0C-A15D-4D83-A6C7-8898A9614B88}</Project>
       <Name>RealtyApp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\back_arrow.png" />
+    <BundleResource Include="Resources\basket_icon.png" />
+    <BundleResource Include="Resources\blue_moss.png" />
+    <BundleResource Include="Resources\green_moss.png" />
+    <BundleResource Include="Resources\grey_moss.png" />
+    <BundleResource Include="Resources\hamburger_icon.png" />
+    <BundleResource Include="Resources\heart_icon.png" />
+    <BundleResource Include="Resources\lavender_moss.png" />
+    <BundleResource Include="Resources\moss.png" />
+    <BundleResource Include="Resources\orange_moss.png" />
+    <BundleResource Include="Resources\pink_moss.png" />
+    <BundleResource Include="Resources\red_moss.png" />
+    <BundleResource Include="Resources\search_icon.png" />
+    <BundleResource Include="Resources\settings_icon.png" />
+    <BundleResource Include="Resources\Truck.png" />
+    <BundleResource Include="Resources\yellow_moss.png" />
   </ItemGroup>
 </Project>

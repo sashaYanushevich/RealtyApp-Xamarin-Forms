@@ -1,25 +1,161 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RealtyApp.MainPage">
 
-    <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-    </StackLayout>
+<ContentPage
+    x:Class="RealtyApp.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:viewmodels="clr-namespace:RealtyApp.ViewModels"
+    ios:Page.UseSafeArea="true"
+    BackgroundColor="White"
+    mc:Ignorable="d">
 
+    <ContentPage.BindingContext>
+        <viewmodels:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="ButtonBackgroundColor">#F5F9FA</Color>
+            <Color x:Key="TextColor">#313643</Color>
+
+            <Style x:Key="HeaderFontLight" TargetType="Label">
+                <Setter Property="FontAttributes" Value="None" />
+                <Setter Property="FontSize" Value="30" />
+                <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+            </Style>
+            <Style x:Key="HeaderFontMedium" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="28" />
+                <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+            </Style>
+            <Style x:Key="ButtonStyle" TargetType="ImageButton">
+                <Setter Property="BackgroundColor" Value="{StaticResource ButtonBackgroundColor}" />
+                <Setter Property="CornerRadius" Value="12" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <AbsoluteLayout>
+        <ImageButton
+            x:Name="HamburgerButton"
+            Padding="10"
+            AbsoluteLayout.LayoutBounds="20,20,48,48"
+            Clicked="HamburgerButton_Clicked"
+            Source="hamburger_icon"
+            Style="{StaticResource ButtonStyle}" />
+        <ImageButton
+            x:Name="FavoriteIcon"
+            Padding="10"
+            AbsoluteLayout.LayoutBounds="340,20,48,48"
+            Source="basket_icon"
+            Style="{StaticResource ButtonStyle}" />
+        <StackLayout x:Name="Header" AbsoluteLayout.LayoutBounds="20,100,340,100">
+            <Label Style="{StaticResource HeaderFontLight}" Text="Выбери дом" />
+            <Label Style="{StaticResource HeaderFontMedium}" Text="О котором мечтаешь!" />
+        </StackLayout>
+        <ImageButton
+            x:Name="SearchBackground"
+            Padding="14"
+            AbsoluteLayout.LayoutBounds="20,200,40,48"
+            Source="search_icon"
+            Style="{StaticResource ButtonStyle}"/>
+        <Button
+            x:Name="SearchIcon"
+            AbsoluteLayout.LayoutBounds="20,200,300,48"
+            BackgroundColor="{StaticResource ButtonBackgroundColor}"
+            FontAttributes="Bold"
+            CornerRadius="14"
+            Text="На карту" />
+
+        <ImageButton
+            x:Name="SettingsIcon"
+            Padding="14"
+            AbsoluteLayout.LayoutBounds="340,200,48,48"
+            Source="settings_icon"
+            Style="{StaticResource ButtonStyle}"/>
+
+        <ScrollView
+            x:Name="ScrollContainer"
+            AbsoluteLayout.LayoutBounds="20,300, 380, 300"
+            Scrolled="ScrollContainer_Scrolled">
+            <FlexLayout
+                BindableLayout.ItemsSource="{Binding Adverts}"
+                Direction="Row"
+                HorizontalOptions="Center"
+                Wrap="Wrap">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <pancake:PancakeView
+                            Margin="10"
+                            BackgroundColor="Gray"
+                            CornerRadius="12"
+                            HeightRequest="270"
+                            Shadow="{pancake:ShadowMarkup Color=Black,
+                            Offset='10,10'}"
+                            WidthRequest="320">
+
+                            <Grid>
+                                <Image Aspect="Fill" Source="{Binding ImageUrl}" />
+
+                                <BoxView
+                                    CornerRadius="0,0,10,0"
+                                    HeightRequest="40"
+                                    HorizontalOptions="End"
+                                    Opacity=".5"
+                                    VerticalOptions="Start"
+                                    WidthRequest="40"
+                                    Color="White" />
+                                <ImageButton
+                                    Padding="10"
+                                    AbsoluteLayout.LayoutBounds="20,20,1,1"
+                                    HorizontalOptions="End"
+                                    Source="heart_icon"
+                                    VerticalOptions="Start"
+                                    BackgroundColor="Transparent"/>
+
+                                <BoxView
+                                    CornerRadius="10,10,0,0"
+                                    HeightRequest="90"
+                                    Opacity=".7"
+                                    VerticalOptions="End"
+                                    Color="White" />
+                                <StackLayout Orientation="Vertical">
+                                    <Label
+                                        Margin="10,190"
+                                        FontAttributes="Bold"
+                                        FontSize="26"
+                                        Style="{StaticResource HeaderFontMedium}"
+                                        Text="{Binding Name}" />
+                                </StackLayout>
+                                <StackLayout>
+                                    <Label
+                                        Margin="10,220"
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        Style="{StaticResource HeaderFontMedium}"
+                                        Text="{Binding Desc}"
+                                        TextColor="#646464" />
+                                </StackLayout>
+                                <StackLayout>
+                                    <Label
+                                        Margin="10,235"
+                                        FontAttributes="None"
+                                        FontSize="16"
+                                        Style="{StaticResource HeaderFontMedium}"
+                                        Text="{Binding Address}"
+                                        TextColor="#646464" />
+                                </StackLayout>
+
+                            </Grid>
+                        </pancake:PancakeView>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate   >
+
+            </FlexLayout>
+        </ScrollView>
+    </AbsoluteLayout>
 </ContentPage>
-
