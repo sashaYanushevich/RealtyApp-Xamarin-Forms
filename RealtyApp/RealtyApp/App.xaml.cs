@@ -1,4 +1,5 @@
 ﻿using System;
+using RealtyApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,8 +10,8 @@ namespace RealtyApp
         public App ()
         {
             InitializeComponent();
+            MainPage = new NavigationPage(new MainPage());
 
-            MainPage = new MainPage();
         }
 
         protected override void OnStart ()

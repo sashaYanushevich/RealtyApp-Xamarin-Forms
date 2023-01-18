@@ -1,5 +1,4 @@
-﻿//using MySqlConnector;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
@@ -9,28 +8,47 @@ namespace RealtApp.Model
 {
     public class Advert
     {
-        public long id;
-        private long userID;
+        public long ID { get; set; }
         public string Name { get; set; }
-        public string Address { get; set; }
-        public int rooms;
         public int AllSquare { get; set; }
-        public int liveSquare;
-        public int year;
-        public string renovation;
+        public int LiveSquare { get; set; }
+        public ulong Price { get; set; }
+        public string Region { get; set; }
+        public string Country { get; set; }
+        public string Street { get; set; }
+        public string HouseNumber { get; set; }
+        public string CityRegion { get; set; }
+        public string MicroDistrict { get; set; }
+        public string LineMetro { get; set; }
+        public string StationMetro { get; set; }
+        public int CountRooms { get; set; }
+        public string TypeHouse { get; set; }
+        public string Renovation { get; set; }
+        public string Furniture { get; set; }
+        public int Floor { get; set; }
+        public int MaxFloor { get; set; }
+        public int YearConstruction { get; set; }
         public string Desc { get; set; }
-        private string date;
-        public string ImageUrl { get; set; }
+        public DateTime Date { get; set; }
+        public List<string> Images { get; set; }
 
-        public Advert(long id, string name, string address, int allSquare, string desc, string imageUrl)
+        public override string ToString()
         {
-            this.id = id;
-            Name = name;
-            Address = address;
-            AllSquare = allSquare;
-            Desc = desc;
-            ImageUrl = imageUrl;
+            return $"{CountRooms}-комн.кв. · {AllSquare} м² · {Floor}/{MaxFloor} этаж";
         }
+
+        //public Advert(long iD, string name, string address, int allSquare, string desc, List<string> images)
+        //{
+        //    ID = iD;
+        //    Name = name;
+        //    Address = address;
+        //    AllSquare = allSquare;
+        //    Desc = desc;
+        //    Images = images;
+        //}
+
+
+
 
 
 

@@ -13,13 +13,11 @@
     BackgroundColor="White"
     mc:Ignorable="d">
 
-    <ContentPage.BindingContext>
-        <viewmodels:MainViewModel />
-    </ContentPage.BindingContext>
+
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Color x:Key="ButtonBackgroundColor">#F5F9FA</Color>
+            <Color x:Key="ButtonBackgroundColor">#F0F2F2</Color>
             <Color x:Key="TextColor">#313643</Color>
 
             <Style x:Key="HeaderFontLight" TargetType="Label">
@@ -53,6 +51,15 @@
             AbsoluteLayout.LayoutBounds="340,20,48,48"
             Source="basket_icon"
             Style="{StaticResource ButtonStyle}" />
+
+        <ImageButton
+            x:Name="ProfileIcon"
+            Padding="10"
+            AbsoluteLayout.LayoutBounds="270,20,48,48"
+            Source="profile_icon"
+            Clicked="ProfileIcon_Clicked"
+            Style="{StaticResource ButtonStyle}" />
+
         <StackLayout x:Name="Header" AbsoluteLayout.LayoutBounds="20,100,340,100">
             <Label Style="{StaticResource HeaderFontLight}" Text="Выбери дом" />
             <Label Style="{StaticResource HeaderFontMedium}" Text="О котором мечтаешь!" />
@@ -83,6 +90,7 @@
             AbsoluteLayout.LayoutBounds="20,300, 380, 300"
             Scrolled="ScrollContainer_Scrolled">
             <FlexLayout
+                
                 BindableLayout.ItemsSource="{Binding Adverts}"
                 Direction="Row"
                 HorizontalOptions="Center"
@@ -97,10 +105,15 @@
                             Shadow="{pancake:ShadowMarkup Color=Black,
                             Offset='10,10'}"
                             WidthRequest="320">
-
-                            <Grid>
-                                <Image Aspect="Fill" Source="{Binding ImageUrl}" />
-
+                           
+                            <pancake:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                                                      Command="{Binding AdvertSelectedCommand}"
+                                                      CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
+                            </pancake:PancakeView.GestureRecognizers>
+                            <Grid x:Name="Item">
+                                <Image Aspect="Fill" Source="{Binding Images[0]}" />
+               
                                 <BoxView
                                     CornerRadius="0,0,10,0"
                                     HeightRequest="40"
@@ -110,7 +123,7 @@
                                     WidthRequest="40"
                                     Color="White" />
                                 <ImageButton
-                                    Padding="10"
+                                    Padding="5"
                                     AbsoluteLayout.LayoutBounds="20,20,1,1"
                                     HorizontalOptions="End"
                                     Source="heart_icon"
@@ -129,7 +142,7 @@
                                         FontAttributes="Bold"
                                         FontSize="26"
                                         Style="{StaticResource HeaderFontMedium}"
-                                        Text="{Binding Name}" />
+                                        Text="{Binding PriceStr}" />
                                 </StackLayout>
                                 <StackLayout>
                                     <Label
@@ -137,7 +150,7 @@
                                         FontAttributes="Bold"
                                         FontSize="16"
                                         Style="{StaticResource HeaderFontMedium}"
-                                        Text="{Binding Desc}"
+                                        Text="{Binding ToString}"
                                         TextColor="#646464" />
                                 </StackLayout>
                                 <StackLayout>

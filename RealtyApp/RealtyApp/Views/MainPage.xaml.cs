@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RealtApp.Model;
+using RealtyApp.ViewModels;
+using RealtyApp.Views;
 using Xamarin.Forms;
 
 namespace RealtyApp
@@ -17,11 +21,14 @@ namespace RealtyApp
             SearchHidden
         }
 
+        public Advert advert { get; set; }
 
         public MainPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
             SizeChanged += MainPage_SizeChanged;
+            BindingContext = new MainViewModel(this.Navigation);
         }
 
         Storyboard _storyboard = new Storyboard();
@@ -101,7 +108,7 @@ namespace RealtyApp
             AbsoluteLayout.SetLayoutBounds(SettingsIcon, settingsRect);
 
             Rectangle settingsRectCollapsed = new Rectangle(
-                x: FavoriteIcon.Bounds.Left - (margin + SettingsIcon.Width),
+                x: FavoriteIcon.Bounds.Left - (margin + SettingsIcon.Width + ProfileIcon.Width + margin),
                 y: margin,
                 width: SettingsIcon.Width,
                 height: SettingsIcon.Height
@@ -118,7 +125,7 @@ namespace RealtyApp
             AbsoluteLayout.SetLayoutBounds(SearchBackground, searchBackgroundRect);
 
             Rectangle searchBackgroundCollapsedRect = new Rectangle(
-                x: FavoriteIcon.Bounds.Left - (margin + SettingsIcon.Width + margin + SearchIcon.Width),
+                x: FavoriteIcon.Bounds.Left - (ProfileIcon.Width + margin +margin + SettingsIcon.Width + margin + SearchIcon.Width),
                 y: margin,
                 width: SettingsIcon.Width,
                 height: SettingsIcon.Height
@@ -191,6 +198,16 @@ namespace RealtyApp
 
             _storyboard.Go(newState);
             CurrentState = newState;
+        }
+
+        async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
+        {
+
+        }
+
+        async void ProfileIcon_Clicked(System.Object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new ProfilePage());
         }
 
         //private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)

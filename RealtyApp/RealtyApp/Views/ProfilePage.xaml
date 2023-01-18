@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="RealtyApp.Views.ProfilePage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="ButtonBackgroundColor">#F0F2F2</Color>
+            <Color x:Key="TextColor">#313643</Color>
+
+            <Style x:Key="HeaderFontLight" TargetType="Label">
+                <Setter Property="FontAttributes" Value="None" />
+                <Setter Property="FontSize" Value="30" />
+                <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+            </Style>
+            <Style x:Key="HeaderFontMedium" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="28" />
+                <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+            </Style>
+
+            <Style x:Key="ParamsLabelColumn0" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="Gray" />
+            </Style>
+
+            
+            <Style x:Key="ParamsLabelColumn1" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+
+            <Style x:Key="ButtonStyle" TargetType="ImageButton">
+                <Setter Property="BackgroundColor" Value="{StaticResource ButtonBackgroundColor}" />
+                <Setter Property="CornerRadius" Value="12" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+            <ImageButton
+                x:Name="BackButton"
+                Padding="10"
+                HeightRequest="48"
+                WidthRequest="48"
+                Margin="20,40,0,0"
+                HorizontalOptions="Start"
+                Source="back_icon"
+                Clicked="BackButton_Clicked"
+                Style="{StaticResource ButtonStyle}" />
+
+            <Label
+                x:Name="TitleHeader"
+                FontAttributes="Bold"
+                FontSize="18"
+                Style="{StaticResource HeaderFontMedium}"
+                Text="Профиль"
+                VerticalOptions="Center"
+                Margin="75,40,0,0"
+                WidthRequest="130"
+                TextColor="Black"/>
+            </StackLayout>
+
+            <BoxView HeightRequest="1" BackgroundColor="LightGray"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Frame Grid.Row="0"
+                       Grid.Column="0"
+                       Grid.RowSpan="2"
+                       Padding="0"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Center"
+                       CornerRadius="50"
+                       IsClippedToBounds="True"
+                       HeightRequest="100"
+                       WidthRequest="100"
+                       BackgroundColor="{StaticResource ButtonBackgroundColor}"
+                       Margin="20">
+                       
+                    <Image Source="red_moss.png"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalOptions="FillAndExpand" />
+                </Frame>
+                <Label Text="Александр Янушевич"
+                       Grid.Column="1"
+                       Grid.Row="0"
+                       Style="{StaticResource HeaderFontMedium}"
+                       FontSize="24"
+                       HorizontalOptions="CenterAndExpand"
+                       Margin="30,20,0,0"/>
+                <Label Text="Оценка: 5⭐"
+                       Grid.Column="1"
+                       Grid.Row="1"
+                       Style="{StaticResource HeaderFontLight}"
+                       FontSize="16"
+                       HorizontalOptions="CenterAndExpand"
+                       Margin="-75,-25,0,0"/>
+            </Grid>
+            <BoxView BackgroundColor="{StaticResource ButtonBackgroundColor}"
+                    HeightRequest="7"
+                    Margin="-20,0,-20,0"/>
+
+            <StackLayout Orientation="Horizontal" Padding="0,20,0,0" HorizontalOptions="Center">
+                <Frame Padding="10" CornerRadius="15" WidthRequest="90">
+                    <StackLayout >
+                    <Label Text="10"
+                           Style="{StaticResource HeaderFontMedium}"
+                           FontSize="18"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"/>
+                    <Label Text="Отзывов"
+                           Margin="0,-6,0,0"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           Style="{StaticResource ParamsLabelColumn0}"/>
+                    </StackLayout>
+                </Frame>
+                <Frame Padding="10" CornerRadius="15" Margin="40,0,0,0" WidthRequest="90">
+                    <StackLayout >
+                    <Label Text="10"
+                           Style="{StaticResource HeaderFontMedium}"
+                           FontSize="18"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"/>
+                    <Label Text="Обьявлений"
+                           Margin="0,-6,0,0"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           Style="{StaticResource ParamsLabelColumn0}"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+            <BoxView BackgroundColor="{StaticResource ButtonBackgroundColor}"
+                    HeightRequest="7"
+                    Margin="0,20,0,0"/>
+
+            <StackLayout Padding="0">
+                <Grid Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="42"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="33"/>
+                    </Grid.RowDefinitions>
+
+                    <Image Source="myadvert_icon"
+                               Grid.Column="0"
+                               Grid.Row="0"
+                               HeightRequest="32"
+                               Margin="10,0,0,0"/>
+                    <Button Text="Мои обьявления"
+                            Margin="0,-7,0,0"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            TextColor="Black"
+                            FontSize="18"/>
+                    <BoxView HeightRequest="1"
+                             BackgroundColor="LightGray"
+                             Grid.Column="1"
+                             VerticalOptions="End"/>
+
+                    <Image Source="myadvert_icon"
+                               Grid.Column="0"
+                               Grid.Row="1"
+                               HeightRequest="32"
+                               Margin="10,0,0,0"/>
+                    <Button Text="Мои cообщения"
+                            Margin="0,-7,0,0"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            TextColor="Black"
+                            FontSize="18"/>
+                    <BoxView HeightRequest="1"
+                             BackgroundColor="LightGray"
+                             Grid.Column="1"
+                             Grid.Row="1"
+                             VerticalOptions="End"/>
+
+                    <Image Source="myadvert_icon"
+                               Grid.Column="0"
+                               Grid.Row="2"
+                               HeightRequest="32"
+                               Margin="10,0,0,0"/>
+                    <Button Text="Уведомления"
+                            Margin="0,-7,0,0"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            TextColor="Black"
+                            FontSize="18"/>
+                    <BoxView HeightRequest="1"
+                             BackgroundColor="LightGray"
+                             Grid.Column="1"
+                             Grid.Row="2"
+                             VerticalOptions="End"/>
+
+                    <Image Source="myadvert_icon"
+                               Grid.Column="0"
+                               Grid.Row="3"
+                               HeightRequest="32"
+                               Margin="10,0,0,0"/>
+                    <Button Text="Избранное"
+                            Margin="0,-7,0,0"
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            TextColor="Black"
+                            FontSize="18"/>
+                    <BoxView HeightRequest="1"
+                             BackgroundColor="LightGray"
+                             Grid.Column="1"
+                             Grid.Row="3"
+                             VerticalOptions="End"/>
+
+                    <Image Source="myadvert_icon"
+                               Grid.Column="0"
+                               Grid.Row="4"
+                               HeightRequest="32"
+                               Margin="10,0,0,0"/>
+                    <Button Text="Мои обьявления"
+                            Margin="0,-7,0,0"
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            TextColor="Black"
+                            FontSize="18"/>
+                    <BoxView HeightRequest="1"
+                             BackgroundColor="LightGray"
+                             Grid.Column="1"
+                             Grid.Row="4"
+                             VerticalOptions="End"/>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+
